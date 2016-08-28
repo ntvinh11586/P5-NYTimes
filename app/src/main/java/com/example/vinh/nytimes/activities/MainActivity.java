@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("NYTimesSearch");
 
         setupViews();
+
+        onArticleSearch();
     }
 
 
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onQueryTextSubmit(String query) {
                 // perform query here
                 searchQuery = query;
-                Toast.makeText(MainActivity.this, "lala", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "ok", Toast.LENGTH_SHORT).show();
 
                 onArticleSearch();
                 // workaround to avoid issues with some emulators and keyboard devices firing twice if a keyboard enter is used
@@ -106,13 +108,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onArticleSearch() {
+
+
+
         AsyncHttpClient client = new AsyncHttpClient();
         String url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
 
         RequestParams params = new RequestParams();
         params.put("api-key", "51065f56d04445baa91280fa70489e8e");
         params.put("page", 0);
-        params.put("q", searchQuery);
+
+        if (!searchQuery.equals(""))
+            params.put("q", searchQuery);
 
         client.get(url, params, new JsonHttpResponseHandler() {
             @Override
