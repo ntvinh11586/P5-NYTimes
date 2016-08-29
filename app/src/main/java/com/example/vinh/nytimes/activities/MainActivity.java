@@ -53,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
         onArticleSearch();
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -85,6 +84,20 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_search_filter:
+                Intent i = new Intent(MainActivity.this, SearchFilterActivity.class);
+                startActivity(i);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
     public void setupViews() {
         rvResult = (RecyclerView)findViewById(R.id.rvContacts);
 
@@ -102,12 +115,10 @@ public class MainActivity extends AppCompatActivity {
                 new ItemClickSupport.OnItemClickListener() {
                     @Override
                     public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                        Intent i = new Intent(getApplicationContext(), ArticleActivity.class);
-
                         Article article = articles.get(position);
 
+                        Intent i = new Intent(getApplicationContext(), ArticleActivity.class);
                         i.putExtra("article", article);
-
                         startActivity(i);
                     }
                 }
@@ -115,9 +126,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onArticleSearch() {
-
-
-
         AsyncHttpClient client = new AsyncHttpClient();
         String url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
 
@@ -131,20 +139,18 @@ public class MainActivity extends AppCompatActivity {
         client.get(url, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-//                Toast.makeText(MainActivity.this, "OK", Toast.LENGTH_SHORT).show();
+
                 Log.d("DEBUG", response.toString());
                 JSONArray articleJsonResults = null;
 
                 try {
-//                    adapter.clear();
                     articles.clear();
                     adapter.notifyDataSetChanged();
+
                     articleJsonResults = response.getJSONObject("response").getJSONArray("docs");
-//                    adapter.addAll(Article.fromJSONArray(articleJsonResults));
-//                    adapter.notifyDataSetChanged();
+
                     articles.addAll(Article.fromJSONArray(articleJsonResults));
                     adapter.notifyDataSetChanged();
-                    Log.d("DEBUG", articles.toString());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -152,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, String res, Throwable t) {
-                Toast.makeText(MainActivity.this, res.toString(), Toast.LENGTH_SHORT).show();
+
             }
         });
 
