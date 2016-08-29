@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.vinh.nytimes.Article;
 import com.example.vinh.nytimes.ArticleArrayAdapter;
+import com.example.vinh.nytimes.Filter;
 import com.example.vinh.nytimes.ItemClickSupport;
 import com.example.vinh.nytimes.R;
 import com.loopj.android.http.AsyncHttpClient;
@@ -26,6 +27,7 @@ import com.loopj.android.http.RequestParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
@@ -39,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     ArticleArrayAdapter adapter;
 
     String searchQuery = "";
+    private final int REQUEST_CODE = 1;
+
+    private Filter SearchFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,13 +95,20 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_search_filter:
                 Intent i = new Intent(MainActivity.this, SearchFilterActivity.class);
-                startActivity(i);
+                startActivityForResult(i, REQUEST_CODE);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+            SearchFilter = (Filter) Parcels.unwrap(data.getParcelableExtra("filter"));
+        }
+    }
 
     public void setupViews() {
         rvResult = (RecyclerView)findViewById(R.id.rvContacts);
@@ -132,6 +144,10 @@ public class MainActivity extends AppCompatActivity {
         RequestParams params = new RequestParams();
         params.put("api-key", "51065f56d04445baa91280fa70489e8e");
         params.put("page", 0);
+
+//        params.put("begin_date", "20160801");
+
+//        params.put("sort", "oldest");
 
         if (!searchQuery.equals(""))
             params.put("q", searchQuery);
