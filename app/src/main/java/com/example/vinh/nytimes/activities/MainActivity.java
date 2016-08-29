@@ -16,7 +16,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.vinh.nytimes.Article;
-import com.example.vinh.nytimes.ContactsAdapter;
+import com.example.vinh.nytimes.ArticleArrayAdapter;
 import com.example.vinh.nytimes.ItemClickSupport;
 import com.example.vinh.nytimes.R;
 import com.loopj.android.http.AsyncHttpClient;
@@ -33,15 +33,13 @@ import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity {
 
-//    EditText etQuery;
-//    GridView gvResults;
-//    Button btnSearch;
     RecyclerView rvResult;
 
     ArrayList<Article> articles;
-//    ArticleArrayAdapter adapter;
+    ArticleArrayAdapter adapter;
+
     String searchQuery = "";
-    ContactsAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,13 +65,12 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                // perform query here
+
                 searchQuery = query;
                 Toast.makeText(MainActivity.this, "ok", Toast.LENGTH_SHORT).show();
 
                 onArticleSearch();
-                // workaround to avoid issues with some emulators and keyboard devices firing twice if a keyboard enter is used
-                // see https://code.google.com/p/android/issues/detail?id=24599
+
                 searchView.clearFocus();
 
                 return true;
@@ -91,34 +88,16 @@ public class MainActivity extends AppCompatActivity {
     public void setupViews() {
         rvResult = (RecyclerView)findViewById(R.id.rvContacts);
 
-//        gvResults = (GridView)findViewById(R.id.gvResults);
         articles = new ArrayList<>();
-//        adapter = new ArticleArrayAdapter(this, articles);
 
-        adapter = new ContactsAdapter(this, articles);
+        adapter = new ArticleArrayAdapter(this, articles);
         rvResult.setAdapter(adapter);
-//        rvResult.setLayoutManager(new LinearLayoutManager(this));
 
-        // First param is number of columns and second param is orientation i.e Vertical or Horizontal
         StaggeredGridLayoutManager gridLayoutManager =
                 new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        // Attach the layout manager to the recycler view
+
         rvResult.setLayoutManager(gridLayoutManager);
 
-//        gvResults.setAdapter(adapter);
-
-//        gvResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int pos, long l) {
-//                Intent i = new Intent(getApplicationContext(), ArticleActivity.class);
-//
-//                Article article = articles.get(pos);
-//
-//                i.putExtra("article", article);
-//
-//                startActivity(i);
-//            }
-//        });
         ItemClickSupport.addTo(rvResult).setOnItemClickListener(
                 new ItemClickSupport.OnItemClickListener() {
                     @Override
