@@ -145,9 +145,13 @@ public class MainActivity extends AppCompatActivity {
         params.put("api-key", "51065f56d04445baa91280fa70489e8e");
         params.put("page", 0);
 
-//        params.put("begin_date", "20160801");
+//        params.put("begin_date", "20160829");
 
-//        params.put("sort", "oldest");
+//        params.put("sort", "newest");
+
+//        params.put("fq", "news_desk:(\"Fashion & Style\")");
+
+//        params.put("fq", "nsews_desk:(\"Arts\")");
 
         if (!searchQuery.equals(""))
             params.put("q", searchQuery);
@@ -167,6 +171,8 @@ public class MainActivity extends AppCompatActivity {
 
                     articles.addAll(Article.fromJSONArray(articleJsonResults));
                     adapter.notifyDataSetChanged();
+                    rvResult.scrollToPosition(0);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

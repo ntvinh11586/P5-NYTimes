@@ -46,6 +46,47 @@ public class SearchFilterActivity extends AppCompatActivity implements DatePicke
         ActionBar actionBar = getSupportActionBar(); // or getActionBar();
         getSupportActionBar().setTitle("Article Filtering"); // set the top title
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        currentDate = Calendar.getInstance();
+        String curentday = currentDate.get(currentDate.DAY_OF_MONTH) >= 10 ?
+                String.valueOf(currentDate.get(currentDate.DAY_OF_MONTH)) :
+                (String) "0" + currentDate.get(currentDate.DAY_OF_MONTH);
+        String curentmonth = currentDate.get(currentDate.MONTH) + 1 >= 10 ?
+                String.valueOf(currentDate.get(currentDate.MONTH) + 1) :
+                (String) "0" + (currentDate.get(currentDate.MONTH) + 1);
+        String curentYear = String.valueOf(currentDate.get(currentDate.YEAR));
+
+        tvBeginDate.setText(curentmonth + "/" + curentday +  "/" + curentYear);
+
+        cbArts.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (cbArts.isChecked()) {
+                    cbFashionStyle.setChecked(false);
+                    cbSports.setChecked(false);
+                }
+            }
+        });
+
+        cbFashionStyle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (cbFashionStyle.isChecked()) {
+                    cbArts.setChecked(false);
+                    cbSports.setChecked(false);
+                }
+            }
+        });
+
+        cbSports.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (cbSports.isChecked()) {
+                    cbFashionStyle.setChecked(false);
+                    cbArts.setChecked(false);
+                }
+            }
+        });
     }
 
     @Override
@@ -65,24 +106,27 @@ public class SearchFilterActivity extends AppCompatActivity implements DatePicke
                 return true;
             case R.id.action_done:
 
-                int day = currentDate.get(currentDate.DAY_OF_MONTH);
-                int month = currentDate.get(currentDate.MONTH) + 1;
-                int year = currentDate.get(currentDate.YEAR);
+                if (currentDate != null) {
 
-                String sortOrder = spSortOrder.getSelectedItem().toString();
+                    int day = currentDate.get(currentDate.DAY_OF_MONTH);
+                    int month = currentDate.get(currentDate.MONTH) + 1;
+                    int year = currentDate.get(currentDate.YEAR);
 
-                int isArts;
-                isArts = cbArts.isChecked() ? 1 : 0;
-                int isFashionStyle = cbFashionStyle.isChecked() ? 1 : 0;
-                int isSport = cbSports.isChecked() ? 1 : 0;
+                    String sortOrder = spSortOrder.getSelectedItem().toString();
 
-                Filter filter = new Filter(day, month, year, sortOrder, isArts, isFashionStyle, isSport);
+                    int isArts = cbArts.isChecked() ? 1 : 0;
+                    int isFashionStyle = cbFashionStyle.isChecked() ? 1 : 0;
+                    int isSport = cbSports.isChecked() ? 1 : 0;
 
-                Intent data = new Intent();
-                data.putExtra("filter", Parcels.wrap(filter));
-                setResult(RESULT_OK, data);
+                    Filter filter = new Filter(day, month, year, sortOrder, isArts, isFashionStyle, isSport);
+
+                    Intent data = new Intent();
+                    data.putExtra("filter", Parcels.wrap(filter));
+                    setResult(RESULT_OK, data);
+                }
 
                 finish();
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
