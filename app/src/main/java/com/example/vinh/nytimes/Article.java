@@ -16,6 +16,7 @@ public class Article {
     String webUrl;
     String headline;
     String thumbNail;
+    String snippet;
 
     public Article() {
 
@@ -25,6 +26,7 @@ public class Article {
         try {
             this.webUrl = jsonObject.getString("web_url");
             this.headline = jsonObject.getJSONObject("headline").getString("main");
+            this.snippet = jsonObject.getString("snippet");
 
             JSONArray multimedia = jsonObject.getJSONArray("multimedia");
 
@@ -66,4 +68,7 @@ public class Article {
         return webUrl;
     }
 
+    public String getSnippet() {
+        return snippet;
+    }
 }
