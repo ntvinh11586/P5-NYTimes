@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     String searchQuery = "";
     private final int REQUEST_CODE = 1;
 
-    private Filter SearchFilter;
+    private Filter searchFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +106,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
-            SearchFilter = (Filter) Parcels.unwrap(data.getParcelableExtra("filter"));
+            searchFilter = (Filter) Parcels.unwrap(data.getParcelableExtra("filter"));
+            onArticleSearch();
         }
     }
 
@@ -145,13 +146,30 @@ public class MainActivity extends AppCompatActivity {
         params.put("api-key", "51065f56d04445baa91280fa70489e8e");
         params.put("page", 0);
 
-//        params.put("begin_date", "20160829");
+        if (searchFilter != null) {
+            String day = searchFilter.day >= 10 ?
+                    String.valueOf(searchFilter.day) :
+                    "0" + String.valueOf(searchFilter.day);
+            String month = searchFilter.month >= 10 ?
+                    String.valueOf(searchFilter.month) :
+                    "0" + String.valueOf(searchFilter.month);
+            String year = String.valueOf(searchFilter.year);
+            params.put("begin_date", year + month + day);
 
-//        params.put("sort", "newest");
+            if (searchFilter.sortOrder.equals("Newest")) {
+                params.put("sort", "newest");
+            } else if (searchFilter.sortOrder.equals("Oldest")) {
+                params.put("sort", "oldest");
+            }
 
-//        params.put("fq", "news_desk:(\"Fashion & Style\")");
-
-//        params.put("fq", "nsews_desk:(\"Arts\")");
+            if (searchFilter.isArts == 1) {
+                params.put("fq", "news_desk:(\"Arts\")");
+            } else if (searchFilter.isFashionStyle == 1) {
+                params.put("fq", "news_desk:(\"Fashion & Style\")");
+            } else if (searchFilter.isSports == 1) {
+                params.put("fq", "news_desk:(\"Sports\")");
+            }
+        }
 
         if (!searchQuery.equals(""))
             params.put("q", searchQuery);
