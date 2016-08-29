@@ -3,30 +3,23 @@ package com.example.vinh.nytimes;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Vinh on 8/28/2016.
  */
-public class Article implements Serializable {
-
-    public String getThumbNail() {
-        return thumbNail;
-    }
-
-    public String getHeadline() {
-        return headline;
-    }
-
-    public String getWebUrl() {
-        return webUrl;
-    }
+@Parcel
+public class Article {
 
     String webUrl;
     String headline;
     String thumbNail;
+
+    public Article() {
+
+    }
 
     public Article(JSONObject jsonObject) {
         try {
@@ -60,4 +53,17 @@ public class Article implements Serializable {
 
         return results;
     }
+
+    public String getThumbNail() {
+        return thumbNail;
+    }
+
+    public String getHeadline() {
+        return headline;
+    }
+
+    public String getWebUrl() {
+        return webUrl;
+    }
+
 }
