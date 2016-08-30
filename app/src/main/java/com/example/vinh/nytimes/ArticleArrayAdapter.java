@@ -49,12 +49,6 @@ public class ArticleArrayAdapter extends
 
     @Override
     public ArticleArrayAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        Context context = parent.getContext();
-//        LayoutInflater inflater = LayoutInflater.from(context);
-//
-//        View contactView = inflater.inflate(R.layout.item_article_result_image, parent, false);
-//
-//        ViewHolder viewHolder = new ViewHolder(contactView);
 
         ArticleArrayAdapter.ViewHolder viewHolder = null;
         LayoutInflater inflater = LayoutInflater.from(mContext);
@@ -106,6 +100,7 @@ public class ArticleArrayAdapter extends
 
         TextView textView = vh2.tvTitle;
         TextView textView1 = vh2.tvSnippet;
+
         textView.setText(contact.getHeadline());
         textView1.setText(contact.getSnippet());
     }

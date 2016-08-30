@@ -31,16 +31,19 @@ import org.parceler.Parcels;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import cz.msebera.android.httpclient.Header;
 
 public class MainActivity extends AppCompatActivity {
 
-    RecyclerView rvResult;
+    @BindView(R.id.recycle_view_results) RecyclerView rvResult;
 
     ArrayList<Article> articles;
     ArticleArrayAdapter adapter;
 
     String searchQuery = "";
+
     private final int REQUEST_CODE = 1;
 
     private Filter searchFilter;
@@ -49,11 +52,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         ActionBar actionBar = getSupportActionBar();
         getSupportActionBar().setTitle("NYTimesSearch");
 
-        setupViews();
+        setupRecycleViews();
 
         onArticleSearch(0);
     }
@@ -111,9 +115,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void setupViews() {
-        rvResult = (RecyclerView)findViewById(R.id.rvContacts);
-
+    public void setupRecycleViews() {
         articles = new ArrayList<>();
 
         adapter = new ArticleArrayAdapter(this, articles);

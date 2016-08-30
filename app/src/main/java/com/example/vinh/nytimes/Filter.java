@@ -18,9 +18,7 @@ public class Filter {
     public int isSports;
 
     public Filter() {
-        isArts = 0;
-        isFashionStyle = 0;
-        isSports = 0;
+
     }
 
     public Filter(int day, int month, int year,

@@ -16,16 +16,20 @@ import com.example.vinh.nytimes.R;
 
 import org.parceler.Parcels;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ArticleActivity extends AppCompatActivity {
+
+    @BindView(R.id.wvArticle) WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article);
+        ButterKnife.bind(this);
 
         Article article = (Article) Parcels.unwrap(getIntent().getParcelableExtra("article"));
-
-        WebView webView = (WebView)findViewById(R.id.wvArticle);
 
         webView.setWebViewClient(new WebViewClient() {
             @Override
