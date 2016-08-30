@@ -23,11 +23,11 @@ The following **required** functionality is completed:
 * [x] Subsequent searches will have any filters applied to the search results.	
 
 The following **optional** functionality is completed:
-
+* [x] User	can	tap	on	any	article	in	results	to	view	the	contents	in	an	embedded	browser.
 * [ ] User can scroll down "infinitely" to continue loading more news articles. (Note: the maximum number of articles is limited by the API search.)
 * [ ] Apply the ButterKnife library to reduce view boilerplate.
 * [x] Replace Picasso with Glide for more efficient image rendering.
-* [x] Leverage the popular GSON library to streamline the parsing of JSON data.
+* [ ] Leverage the popular GSON library to streamline the parsing of JSON data.
 
 The following **additional** features are implemented:
 
