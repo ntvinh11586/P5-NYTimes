@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.example.vinh.nytimes.Article;
 import com.example.vinh.nytimes.ArticleArrayAdapter;
@@ -66,14 +65,13 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu_main, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-
+        
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
 
                 searchQuery = query;
-                Toast.makeText(MainActivity.this, "ok", Toast.LENGTH_SHORT).show();
-
+                
                 onArticleSearch(0);
 
                 searchView.clearFocus();
@@ -83,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+
                 return false;
             }
         });
@@ -132,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
                 onArticleSearch(page);
             }
+
         });
 
 
@@ -149,11 +149,13 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
-    public void onArticleSearch(int page) {
+    public void onArticleSearch(final int page) {
         AsyncHttpClient client = new AsyncHttpClient();
         String url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
 
-        final int resultPage = page;
+        if (page == 0) {
+            rvResult.scrollToPosition(0);
+        }
 
         RequestParams params = new RequestParams();
         params.put("api-key", "51065f56d04445baa91280fa70489e8e");
@@ -195,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
                 JSONArray articleJsonResults = null;
 
                 try {
-                    if (resultPage == 0) {
+                    if (page == 0) {
                         articles.clear();
                     }
 
@@ -206,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
                     articles.addAll(Article.fromJSONArray(articleJsonResults));
                     adapter.notifyDataSetChanged();
 
-                    if (resultPage == 0) {
+                    if (page == 0) {
                         rvResult.scrollToPosition(0);
                     }
 
