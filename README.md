@@ -24,14 +24,14 @@ The following **required** functionality is completed:
 
 The following **optional** functionality is completed:
 * [x] User	can	tap	on	any	article	in	results	to	view	the	contents	in	an	embedded	browser.
-* [ ] User can scroll down "infinitely" to continue loading more news articles. (Note: the maximum number of articles is limited by the API search.)
-* [ ] Apply the ButterKnife library to reduce view boilerplate.
+* [x] User can scroll down "infinitely" to continue loading more news articles. (Note: the maximum number of articles is limited by the API search.)
+* [x] Apply the ButterKnife library to reduce view boilerplate.
 * [x] Replace Picasso with Glide for more efficient image rendering.
 * [ ] Leverage the popular GSON library to streamline the parsing of JSON data.
 
 The following **additional** features are implemented:
 
-* [ ] Improve the user interface and experiment with image assets and/or styling and coloring
+* [x] Improve the user interface and experiment with image assets and/or styling and coloring
 * [ ] List anything else that you can get done to improve the app functionality!
 
 ## Video Walkthrough
