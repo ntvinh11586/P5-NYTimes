@@ -2,7 +2,7 @@
 
 **NYTimesSearch** is an android app that allows a user to search for images on web using simple filters. The app utilizes [New York Times Search API](http://developer.nytimes.com/docs/read/article_search_api_v2).
 
-Time spent: **X** hours spent in total
+Time spent: **19** hours spent in total
 
 ## User Stories
 
@@ -53,7 +53,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright 20016 The-Vinh Nguyen
+    Copyright 2016 The-Vinh Nguyen
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
