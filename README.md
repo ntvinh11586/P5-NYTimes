@@ -1,6 +1,6 @@
-# Project 2 - *Name of App Here*
+# Project 2 - *NYTimesSearch*
 
-**Name of your app** is an android app that allows a user to search for images on web using simple filters. The app utilizes [New York Times Search API](http://developer.nytimes.com/docs/read/article_search_api_v2).
+**NYTimesSearch** is an android app that allows a user to search for images on web using simple filters. The app utilizes [New York Times Search API](http://developer.nytimes.com/docs/read/article_search_api_v2).
 
 Time spent: **X** hours spent in total
 
@@ -38,7 +38,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-![Video Walkthrough](http://i.imgur.com/link/to/your/gif/file.gif)
+![Video Walkthrough]([Imgur](http://i.imgur.com/S1TUMLP.gif))
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
