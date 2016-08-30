@@ -105,8 +105,6 @@ public class ArticleArrayAdapter extends
         textView1.setText(contact.getSnippet());
     }
 
-
-
     @Override
     public int getItemCount() {
         return mArticles.size();
@@ -120,6 +118,5 @@ public class ArticleArrayAdapter extends
             return NO_IMAGE;
         }
     }
-
 
 }

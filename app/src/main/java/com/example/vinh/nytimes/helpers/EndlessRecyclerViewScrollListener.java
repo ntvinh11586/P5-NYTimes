@@ -1,4 +1,4 @@
-package com.example.vinh.nytimes;
+package com.example.vinh.nytimes.helpers;
 
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;

@@ -1,4 +1,4 @@
-package com.example.vinh.nytimes;
+package com.example.vinh.nytimes.fragments;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

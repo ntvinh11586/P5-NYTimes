@@ -1,7 +1,9 @@
-package com.example.vinh.nytimes;
+package com.example.vinh.nytimes.helpers;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import com.example.vinh.nytimes.R;
 
 /**
  * Created by Vinh on 8/29/2016.

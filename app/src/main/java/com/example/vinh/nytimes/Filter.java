@@ -21,8 +21,7 @@ public class Filter {
 
     }
 
-    public Filter(int day, int month, int year,
-                  String sortOrder,
+    public Filter(int day, int month, int year, String sortOrder,
                   int isArts, int isFashionStyle, int isSports){
         this.day = day;
         this.month = month;
