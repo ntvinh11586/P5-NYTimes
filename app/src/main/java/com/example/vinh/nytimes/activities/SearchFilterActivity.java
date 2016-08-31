@@ -16,7 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.vinh.nytimes.fragments.DatePickerFragment;
-import com.example.vinh.nytimes.Filter;
+import com.example.vinh.nytimes.packages.Filter;
 import com.example.vinh.nytimes.R;
 
 import org.parceler.Parcels;

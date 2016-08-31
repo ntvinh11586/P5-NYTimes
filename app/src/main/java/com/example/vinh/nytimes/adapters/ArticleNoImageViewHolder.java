@@ -1,8 +1,9 @@
-package com.example.vinh.nytimes;
+package com.example.vinh.nytimes.adapters;
 
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.vinh.nytimes.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -10,12 +11,12 @@ import butterknife.ButterKnife;
 /**
  * Created by Vinh on 8/30/2016.
  */
-public class ArticleImageViewHolder extends ArticleArrayAdapter.ViewHolder {
+public class ArticleNoImageViewHolder extends ArticleArrayAdapter.ViewHolder {
 
     @BindView(R.id.tvTitle) public TextView tvTitle;
-    @BindView(R.id.ivImage) public ImageView ivImage;
+    @BindView(R.id.tvSnippet) public TextView tvSnippet;
 
-    public ArticleImageViewHolder(View itemView) {
+    public ArticleNoImageViewHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }

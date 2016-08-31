@@ -1,4 +1,4 @@
-package com.example.vinh.nytimes;
+package com.example.vinh.nytimes.packages;
 
 import org.parceler.Parcel;
 

@@ -1,4 +1,4 @@
-package com.example.vinh.nytimes;
+package com.example.vinh.nytimes.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.vinh.nytimes.R;
+import com.example.vinh.nytimes.packages.Article;
 
 import java.util.ArrayList;
 
@@ -112,7 +114,7 @@ public class ArticleArrayAdapter extends
 
     @Override
     public int getItemViewType(int position) {
-        if (!mArticles.get(position).thumbNail.equals("")) {
+        if (!mArticles.get(position).getThumbNail().equals("")) {
             return IMAGE;
         } else {
             return NO_IMAGE;
