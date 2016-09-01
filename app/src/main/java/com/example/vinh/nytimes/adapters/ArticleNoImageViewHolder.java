@@ -1,5 +1,6 @@
 package com.example.vinh.nytimes.adapters;
 
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,7 +12,7 @@ import butterknife.ButterKnife;
 /**
  * Created by Vinh on 8/30/2016.
  */
-public class ArticleNoImageViewHolder extends ArticleArrayAdapter.ViewHolder {
+public class ArticleNoImageViewHolder extends RecyclerView.ViewHolder {
 
     @BindView(R.id.tvTitle) public TextView tvTitle;
     @BindView(R.id.tvSnippet) public TextView tvSnippet;
